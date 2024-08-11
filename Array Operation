@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+int del(int *arr,int size,int pos){
+  
+   if(pos > size-1 ){
+    printf("invalid position\n");
+    
+  }else{
+    
+     for(int i = pos; i< size; i++){
+    arr[i] = arr[i+1];
+    
+  }
+  }
+  
+ return --size;
+  
+}
+
+int add(int* arr,int num, int size, int pos){
+  
+  if(pos > size-1 ){
+    printf("invalid position");
+    return -1;
+  }
+  
+  for(int i = size-1; i >= pos; i--){
+    arr[i+1] = arr[i];
+  }
+  arr[pos] = num;
+  
+  return ++size;
+  
+}
+
+int main()
+{
+    
+    int arr[] = {1,2,4,5};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    
+    for(int i = 0; i< size; i++){
+      printf("%d\t",arr[i]);
+    }
+    
+    printf("\n");
+   size =  add(arr,3,size,2);
+   
+  // printf("%d", size);
+ 
+  for(int i = 0; i< size; i++){
+      printf("%d\t",arr[i]);
+    }
+    printf("\n");
+   size =  del(arr,size,1);
+     
+     
+ 
+  for(int i = 0; i< size; i++){
+      printf("%d\t",arr[i]);
+    }
+    
+    return 0;
+}
