@@ -1,0 +1,85 @@
+#include<stdio.h>
+#define size 5
+int queue[size];
+int front = -1;
+int rear = -1;
+
+void enqueue(int data){
+    
+    if(rear == size-1 ){
+        printf("queue is full\n");
+        return;
+    }else if(front == -1 && rear == -1){
+        front++;
+        rear++;
+        queue[rear] = data;
+           printf("%d is enqueued\n",queue[rear]);
+        
+    }else{
+        
+    
+    queue[++rear] = data;
+    printf("%d is enqueued\n",queue[rear]);
+    }
+    
+}
+  void dequeue(){
+    if(front == -1 && rear == -1){
+        printf("queue is empty\n");
+        return;
+    }else if(front == rear){
+            printf("%d is dequeued\n",queue[rear]);
+
+        front = -1;
+        rear = -1;
+    }else{
+        
+    int c = queue[front++];
+    printf("%d is dequeued\n",c);
+    }
+    
+  
+}
+
+int peek(){
+
+    return queue[rear];
+}
+
+void display(int queue[]){
+    for(int i = front ; i <= rear; i++){
+        printf("%d -->",queue[i]);
+        
+    }
+    printf("\n");
+}
+
+int main(){
+    enqueue(1);
+    enqueue(2);
+    enqueue(3);
+    enqueue(7);
+    enqueue(10);
+    enqueue(1);
+    dequeue();
+    display(queue);
+    enqueue(15);
+    dequeue();
+    dequeue();
+    dequeue();
+    dequeue();
+    printf("peek elements is : %d\n",peek());
+    display(queue);
+    dequeue();
+    dequeue();
+    enqueue(12);
+    enqueue(14);
+    enqueue(16);
+    display(queue);
+    
+    
+    
+    
+    
+    return 0;
+}
