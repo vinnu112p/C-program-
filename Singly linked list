@@ -110,6 +110,7 @@ void search(int tgt){
     temp = temp->next;
     i++;
   }
+printf("Target is not found\n");
 }
 
 void display() {
