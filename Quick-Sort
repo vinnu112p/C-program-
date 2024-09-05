@@ -1,0 +1,47 @@
+#include<stdio.h>
+
+int quicksort(int arr[],int low, int high){
+    int pivot = high;
+    int h = low-1;
+    
+  for(int i = low; i < high; i++){
+      if(arr[i] <= arr[pivot]){
+          h = h+1;
+          int temp = arr[i];
+          arr[i] = arr[h];
+          arr[h] = temp;
+      }
+  }
+    int temp = arr[pivot];
+    arr[pivot] = arr[h+1];
+    arr[h+1] = temp;
+    
+    return h+1;
+}
+
+void Quicksort(int arr[], int low, int high){
+    int q;
+    if(low < high){
+        q  = quicksort(arr,low,high);
+        Quicksort(arr,low,q-1);
+        Quicksort(arr,q+1,high);
+    }
+}
+
+int main(){
+    int arr[] = {7,5,1,4,3,9,8};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    printf("Initial Array :\n");
+    for(int i = 0; i < n; i++){
+        printf("%d\t",arr[i]);
+    }
+    printf("\n");
+    
+    int low = 0;
+    int high = n-1;
+    Quicksort(arr,low,high);
+    printf("Sorted Array :\n");
+    for(int i = 0; i < n; i++){
+        printf("%d\t",arr[i]);
+    }
+}
