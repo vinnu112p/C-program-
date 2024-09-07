@@ -1,0 +1,78 @@
+#include<stdio.h>
+
+void merge(int arr[], int low, int mid, int high){
+    int n1 = mid-low+1;
+    int n2 = high-mid;
+    int arr1[n1];
+    int arr2[n2];
+    int k = low;
+    for(int i = 0; i < n1; i++){
+        arr1[i] = arr[k];
+        k++;
+    }
+    for(int j = 0; j < n2; j++ ){
+        arr2[j] = arr[k];
+        k++;
+    }
+
+    int i = 0;
+    int j = 0;
+    k = low;
+    
+ while(i < n1 && j < n2){
+     if(arr1[i] <= arr2[j]){
+         arr[k] = arr1[i];
+         k++;
+         i++;
+     }else{
+         arr[k] = arr2[j];
+         k++;
+         j++;
+     }
+ }
+ 
+ while(i < n1){
+     arr[k] = arr1[i];
+     i++;
+     k++;
+ }
+ while(j < n2){
+     arr[k] = arr2[j];
+     j++;
+     k++;
+ }
+ 
+}
+
+void mergeSort(int arr[], int low, int high){
+    int mid;
+    
+    if(low < high)
+    {
+         mid = (high+low)/2;
+         mergeSort(arr,low,mid);
+         mergeSort(arr,mid+1,high);
+         merge(arr,low,mid,high);
+         
+    }
+}
+
+int main(){
+    int arr[] = {7,4,8,2,3,1,6,10,9,12};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    
+    for(int i = 0; i < n; i++){
+        printf("%d\t",arr[i]);
+    }
+    
+    printf("\n");
+    
+    int low = 0;
+    int high = n-1;
+    mergeSort(arr,low,high);
+    
+    for(int i = 0; i < n; i++){
+        printf("%d\t",arr[i]);
+    }
+    return 0;
+}
